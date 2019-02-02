@@ -35,12 +35,10 @@ public class UserController {
     }
         //(value = "id")
     @GetMapping(path="/find")
-    public User UserGetById(@PathVariable Long id){
+    public @ResponseBody User UserGetById(@RequestParam Long id){
 
 
             return userService.findById(id);
-
-
 
 
     }
