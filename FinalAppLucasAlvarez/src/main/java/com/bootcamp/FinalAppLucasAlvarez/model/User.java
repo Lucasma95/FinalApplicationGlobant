@@ -1,12 +1,15 @@
 package com.bootcamp.FinalAppLucasAlvarez.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-//@Table(name = "cities")
+@Entity @Getter @Setter @NoArgsConstructor
 public class User {
 
     @Id
@@ -15,33 +18,15 @@ public class User {
 
     private String name;
 
+
     private String email;
 
+    public User ( String NAME, String EMAIL){
 
 
-    public Long getIduser() {
-        return id;
+        this.name = NAME;
+        this.email = EMAIL;
+
     }
-
-    public void setIduser(Long iduser) {
-        this.id = iduser;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 
 }

@@ -28,10 +28,24 @@ public class UserService implements IUserService {
         return user;
     }
 
+
+    @Override
+    public void deleteById(Long id) {
+
+        repository.deleteById(id);
+
+    }
+
+
+
     @Override
     public void save(User user) {
 
         repository.save(user);
 
     }
+
+
+
+
 }

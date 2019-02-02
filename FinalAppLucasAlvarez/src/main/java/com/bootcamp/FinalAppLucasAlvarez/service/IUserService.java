@@ -11,4 +11,6 @@ public interface IUserService  {
      User findById(Long id);
 
      void save(User user);
+
+     void deleteById(Long id);
 }

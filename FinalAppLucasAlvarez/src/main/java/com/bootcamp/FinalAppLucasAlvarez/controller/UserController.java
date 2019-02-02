@@ -18,13 +18,8 @@ public class UserController {
     public @ResponseBody String addNewUser(@RequestParam String Name,
                       @RequestParam String Email) {
 
-        User user = new User();
-
-        user.setName(Name);
-        user.setEmail(Email);
-
+        User user = new User(Name, Email);
         userService.save(user);
-
         return "User Saved";
     }
 
@@ -33,13 +28,22 @@ public class UserController {
         return  userService.findAll();
 
     }
-        //(value = "id")
-    @GetMapping(path="/find")
-    public @ResponseBody User UserGetById(@RequestParam Long id){
 
+    @GetMapping(path="/find")
+    public @ResponseBody User GetUserById(@RequestParam Long id){
 
             return userService.findById(id);
 
-
     }
+
+    @GetMapping("/delete")
+    public @ResponseBody String DeleteUserById(@RequestParam Long id){
+
+        userService.deleteById(id);
+
+        return "User deleted";
+    }
+
+
+
 }
