@@ -1,4 +1,4 @@
-package com.bootcamp.FinalAppLucasAlvarez.controllers;
+package com.bootcamp.FinalAppLucasAlvarez.examples;
 
 import org.springframework.web.bind.annotation.*;
 
