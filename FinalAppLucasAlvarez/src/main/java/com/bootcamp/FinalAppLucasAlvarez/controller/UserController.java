@@ -14,6 +14,9 @@ public class UserController {
     UserService userService;
 
 
+
+
+
     @GetMapping(path="/add")
     public @ResponseBody String addNewUser(@RequestParam String Name,
                       @RequestParam String Email) {
@@ -21,6 +24,8 @@ public class UserController {
         User user = new User(Name, Email);
         userService.save(user);
         return "User Saved";
+
+
     }
 
     @GetMapping("/all")
@@ -42,6 +47,19 @@ public class UserController {
         userService.deleteById(id);
 
         return "User deleted";
+    }
+
+    @GetMapping(path="/update")
+    public @ResponseBody String UpdateUser( @RequestParam Long id,
+                                            @RequestParam String Name,
+                                            @RequestParam String Email) {
+
+        User user = new User(id, Name, Email);
+
+        userService.save(user);
+        return "User Updated";
+
+
     }
 
 

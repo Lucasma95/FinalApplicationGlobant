@@ -11,37 +11,49 @@ import org.springframework.web.bind.annotation.*;
 public class CityController {
 
     @Autowired
-    CityService CityService;
+    CityService cityService;
 
 
     @GetMapping(path="/add")
     public @ResponseBody
     String addNewCity(@RequestParam String Name) {
 
-        City user = new City(Name);
-        CityService.save(user);
+        City city = new City(Name);
+        cityService.save(city);
         return "City Saved";
     }
 
     @GetMapping("/all")
     public @ResponseBody Iterable<City> getAllCities(){
 
-        return  CityService.findAll();
+        return  cityService.findAll();
 
     }
 
     @GetMapping(path="/find")
     public @ResponseBody City GetCityById(@RequestParam Long id){
 
-        return CityService.findById(id);
+        return cityService.findById(id);
 
     }
 
     @GetMapping("/delete")
     public @ResponseBody String DeleteCityById(@RequestParam Long id){
 
-        CityService.deleteById(id);
+        cityService.deleteById(id);
 
         return "City deleted";
+    }
+
+    @GetMapping(path="/update")
+    public @ResponseBody String UpdateUser( @RequestParam Long id,
+                                            @RequestParam String Name) {
+
+        City city = new City(id, Name);
+
+        cityService.save(city);
+        return "City Updated";
+
+
     }
 }
