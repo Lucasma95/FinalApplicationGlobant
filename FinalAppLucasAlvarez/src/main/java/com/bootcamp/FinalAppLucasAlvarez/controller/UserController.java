@@ -1,6 +1,7 @@
 package com.bootcamp.FinalAppLucasAlvarez.controller;
 
 
+import com.bootcamp.FinalAppLucasAlvarez.model.City;
 import com.bootcamp.FinalAppLucasAlvarez.model.User;
 import com.bootcamp.FinalAppLucasAlvarez.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,12 @@ public class UserController {
 
     @GetMapping(path="/add")
     public @ResponseBody String addNewUser(@RequestParam String Name,
-                      @RequestParam String Email) {
+                                           @RequestParam String Email,
+                                           @RequestParam Long IdCity) {
 
-        User user = new User(Name, Email);
+        City city = new City();
+        city.setId(IdCity);
+        User user = new User(Name, Email, city);
         userService.save(user);
         return "User Saved";
 
@@ -52,9 +56,13 @@ public class UserController {
     @GetMapping(path="/update")
     public @ResponseBody String UpdateUser( @RequestParam Long id,
                                             @RequestParam String Name,
-                                            @RequestParam String Email) {
+                                            @RequestParam String Email,
+                                            @RequestParam Long IdCity) {
 
-        User user = new User(id, Name, Email);
+
+        City city = new City();
+        city.setId(IdCity);
+        User user = new User(id, Name, Email, city);
 
         userService.save(user);
         return "User Updated";

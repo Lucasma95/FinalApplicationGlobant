@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Table(name="USERS")
 public class User {
 
     @Id
@@ -16,10 +17,14 @@ public class User {
     private Long id;
     private String name;
     private String email;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CITIES_id")
     private City city;
-    /*@ManyToOne
-    @JoinColumn
-    private int idCity ;*/
+
+
+
+    //CONSTRUCTORS--------------------------------------------------------------------------
 
     public User ( String NAME, String EMAIL){
 
@@ -36,26 +41,20 @@ public class User {
 
     }
 
+    public User(String NAME, String EMAIL, City CITY){
 
-    @ManyToOne
-    @JoinColumn(name = "city_id")
-    public City getCity(){
+        this.name = NAME;
+        this.email = EMAIL;
+        this.city = CITY;
 
-        return city;
+    }
+    public String toString(){
+
+        return "Name: "+this.name+" Email: "+this.email+" City: "+this.city.getName();
+
     }
 
-    public void setCity(City cityp){
 
-        this.city = cityp;
-    }
-    /*@ManyToOne
-    @JoinColumn(name = "book_category_id")
-    public BookCategory getBookCategory() {
-        return bookCategory;
-    }
 
-    public void setBookCategory(BookCategory bookCategory) {
-        this.bookCategory = bookCategory;
-    }*/
 
 }

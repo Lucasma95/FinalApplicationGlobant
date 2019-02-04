@@ -11,51 +11,52 @@ import java.util.Set;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Table(name="CITIES")
 public class City {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<User> users;
 
+
+
+    //CONSTRUCTORS--------------------------------------------------------------------------
     public City( String NAME){
-        this.name = NAME;
+                this.name = NAME;
 
     }
-
-    public City(Long id, String NAME){
-        this.name = NAME;
-        this.id = id;
-    }
-
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    public Set<User> getUsers(){
-        return users;
+    public City(Long ID, String NAME){
+            this.name = NAME;
+            this.id = ID;
 
     }
-
-    public void setUsers(Set<User> users){
-
-        this.users = users;
-    }
+    /*public String toString(){
 
 
+        return this.name;
+    }*/
 
-    @Override
-    public String toString() {
-        String result = String.format(
-                "Category[id=%d, name='%s']%n",
-                id, name);
-        if (users != null) {
-            for(User user : users) {
-                result += String.format(
-                        "User[id=%d, name='%s']%n",
-                        user.getId(), user.getName());
-            }
+    /*public String toString(){
+        String info = "";
+        JSONObject jsonInfo = new JSONObject();
+        jsonInfo.put("name",this.name);
+
+        JSONArray productArray = new JSONArray();
+        if(this.products != null){
+            this.products.forEach(product->{
+                JSONObject subJson = new JSONObject();
+                subJson.put("name", product.getName());
+                productArray.put(subJson);
+            });
         }
-
-        return result;
-    }
+        jsonInfo.put("products", productArray);
+        info = jsonInfo.toString();
+        return info;
+    }*/
 
 }
