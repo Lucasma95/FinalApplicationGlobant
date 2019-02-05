@@ -37,6 +37,12 @@ public class UserService implements IUserService {
 
     }
 
+    @Override
+    public void update(User user) {
+
+        repository.save(user);
+
+    }
 
 
     @Override

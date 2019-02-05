@@ -12,13 +12,12 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private String email;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "CITIES_id")
     private City city;
 
@@ -48,13 +47,5 @@ public class User {
         this.city = CITY;
 
     }
-    public String toString(){
-
-        return "Name: "+this.name+" Email: "+this.email+" City: "+this.city.getName();
-
-    }
-
-
-
 
 }

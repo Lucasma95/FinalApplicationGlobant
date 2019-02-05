@@ -7,6 +7,8 @@ import com.bootcamp.FinalAppLucasAlvarez.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path="/users")
 public class UserController {
@@ -15,16 +17,12 @@ public class UserController {
     UserService userService;
 
 
-
-
-
     @GetMapping(path="/add")
     public @ResponseBody String addNewUser(@RequestParam String Name,
                                            @RequestParam String Email,
                                            @RequestParam Long IdCity) {
 
-        City city = new City();
-        city.setId(IdCity);
+        City city = new City(IdCity);
         User user = new User(Name, Email, city);
         userService.save(user);
         return "User Saved";
@@ -33,8 +31,12 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public @ResponseBody Iterable<User> getAllUsers(){
+    public @ResponseBody List<User> getAllUsers() {
+
+
+
         return  userService.findAll();
+
 
     }
 
@@ -57,14 +59,13 @@ public class UserController {
     public @ResponseBody String UpdateUser( @RequestParam Long id,
                                             @RequestParam String Name,
                                             @RequestParam String Email,
-                                            @RequestParam Long IdCity) {
+                                            @RequestParam Long IdCity,
+                                            @RequestParam String CityName) {
 
-
-        City city = new City();
-        city.setId(IdCity);
+        City city = new City(IdCity, CityName);
         User user = new User(id, Name, Email, city);
 
-        userService.save(user);
+        userService.update(user);
         return "User Updated";
 
 
