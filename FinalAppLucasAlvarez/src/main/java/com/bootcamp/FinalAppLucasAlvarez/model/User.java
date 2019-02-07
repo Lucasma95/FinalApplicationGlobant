@@ -12,40 +12,22 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
     private String name;
     private String email;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CITIES_id")
     private City city;
 
 
-
+    //, cascade = CascadeType.ALL
     //CONSTRUCTORS--------------------------------------------------------------------------
 
-    public User ( String NAME, String EMAIL){
 
 
-        this.name = NAME;
-        this.email = EMAIL;
 
-    }
-    public User (Long id, String NAME, String EMAIL){
-
-        this.id = id;
-        this.name = NAME;
-        this.email = EMAIL;
-
-    }
-
-    public User(String NAME, String EMAIL, City CITY){
-
-        this.name = NAME;
-        this.email = EMAIL;
-        this.city = CITY;
-
-    }
 
 }

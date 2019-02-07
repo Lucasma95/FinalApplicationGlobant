@@ -14,11 +14,10 @@ public class CityController {
     CityService cityService;
 
 
-    @GetMapping(path="/add")
-    public @ResponseBody
-    String addNewCity(@RequestParam String Name) {
+    @PostMapping(path="/add")
+    public @ResponseBody String addNewCity(@RequestBody City city) {
 
-        City city = new City(Name);
+
         cityService.save(city);
         return "City Saved";
     }
@@ -37,7 +36,7 @@ public class CityController {
 
     }
 
-    @GetMapping("/delete")
+    @DeleteMapping("/delete")
     public @ResponseBody String DeleteCityById(@RequestParam Long id){
 
         cityService.deleteById(id);
@@ -45,11 +44,8 @@ public class CityController {
         return "City deleted";
     }
 
-    @GetMapping(path="/update")
-    public @ResponseBody String UpdateUser( @RequestParam Long id,
-                                            @RequestParam String Name) {
-
-        City city = new City(id, Name);
+    @PostMapping(path="/update")
+    public @ResponseBody String UpdateUser( @RequestBody City city ) {
 
         cityService.save(city);
         return "City Updated";

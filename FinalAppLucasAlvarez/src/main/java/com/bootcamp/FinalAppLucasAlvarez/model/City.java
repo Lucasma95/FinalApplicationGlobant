@@ -7,9 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-/*import org.json.JSONArray;
-import org.json.JSONObject;*/
-
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
@@ -17,23 +14,16 @@ import org.json.JSONObject;*/
 public class City {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.AUTO)
+
     private Long id;
     private String name;
 
 
+
+
     //CONSTRUCTORS--------------------------------------------------------------------------
 
-
-    public City(Long ID){
-
-        this.id = ID;
-
-    }
-    public City( String NAME){
-                this.name = NAME;
-
-    }
 
 
 }
